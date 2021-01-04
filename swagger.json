@@ -1,0 +1,525 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Very Useful Tools to Remember",
+    "description": "Um simples repositório para gerenciar ferramentas com seus respectivos nomes, links, descrições e tags",
+    "contact": {
+      "email": "judahholanda7@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://vutt.vercel.app/api",
+      "description": "API on vercel"
+    },
+    {
+      "url": "https://virtserver.swaggerhub.com/Judahh/VUTT/1.0.0"
+      
+    }
+  ],
+  "tags": [
+    {
+      "name": "tools",
+      "description": "Everything about tools"
+    },
+  ],
+  "paths": {
+    "/tools": {
+      "put": {
+        "tags": [
+          "tools"
+        ],
+        "summary": "Update an existing tool",
+        "operationId": "updateTool",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Tool"
+        },
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Tool not found"
+          }
+        },
+        "security": [
+          {
+            "vutt_auth": [
+              "write:tools",
+              "read:tools"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "tools"
+        ],
+        "summary": "Add a new tool",
+        "operationId": "addTool",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Tool"
+        },
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "vutt_auth": [
+              "write:tools",
+              "read:tools"
+            ]
+          }
+        ]
+      }
+    },
+    "/tools/tag={tags}": {
+      "get": {
+        "tags": [
+          "tools"
+        ],
+        "summary": "Finds Tools by tag",
+        "description": "Multiple tags values can be provided with comma separated strings",
+        "operationId": "findToolsByTag",
+        "parameters": [
+         {
+            "name": "tags",
+            "in": "path",
+            "description": "Tags to filter by",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Tool"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Tool"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "vutt_auth": [
+              "write:tools",
+              "read:tools"
+            ]
+          }
+        ]
+      }
+    },
+    "/tool/{toolId}": {
+      "get": {
+        "tags": [
+          "tools"
+        ],
+        "summary": "Find tool by ID",
+        "description": "Returns a single tool",
+        "operationId": "getToolById",
+        "parameters": [
+          {
+            "name": "toolId",
+            "in": "path",
+            "description": "ID of tool to return",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "format": "oid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tool"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tool"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Tool not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "tools"
+        ],
+        "summary": "Updates a tool with form data",
+        "operationId": "updateToolWithForm",
+        "parameters": [
+          {
+            "name": "toolId",
+            "in": "path",
+            "description": "ID of tool that needs to be updated",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "format": "oid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "vutt_auth": [
+              "write:tools",
+              "read:tools"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "tools"
+        ],
+        "summary": "Deletes a tool",
+        "operationId": "deleteTool",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "toolId",
+            "in": "path",
+            "description": "Tool id to delete",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "format": "oid"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Tool not found"
+          }
+        },
+        "security": [
+          {
+            "vutt_auth": [
+              "write:tools",
+              "read:tools"
+            ]
+          }
+        ]
+      }
+    },
+    "/user": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Create user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "createUser",
+        "requestBody": {
+          "description": "Created user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs user into the system",
+        "operationId": "loginUser",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "The user name for login",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "X-Rate-Limit": {
+                "description": "calls per hour allowed by the user",
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "X-Expires-After": {
+                "description": "date in UTC when token expires",
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs out current logged in user session",
+        "operationId": "logoutUser",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+  },
+  "components": {
+    "schemas": {
+      "Tag": {
+        "type": "string",
+        "example": "planning",
+        "xml": {
+          "name": "Tag"
+        }
+      },
+      "Tool": {
+        "required": [
+          "title",
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "oid"
+          },
+          "title": {
+            "type": "string",
+            "example": "Notion"
+          },
+          "link": {
+            "type": "string",
+            "example": "https://notion.so"
+          },
+          "description": {
+            "type": "string",
+            "example": "All in one tool to organize teams and ideas. Write, plan, collaborate, and get organized."
+          },
+          "tags": {
+            "type": "array",
+            "xml": {
+              "name": "tag",
+              "wrapped": true
+            },
+            "items": {
+              "$ref": "#/components/schemas/Tag"
+            }
+          },
+        },
+        "xml": {
+          "name": "Tool"
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "oid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+        },
+      },
+      "body": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Updated name of the tool"
+          },
+          "description": {
+            "type": "string",
+            "description": "Updated description of the tool"
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "Tool": {
+        "description": "Tool object that needs to be added to the store",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Tool"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Tool"
+            }
+          }
+        },
+        "required": true
+      },
+      "UserArray": {
+        "description": "List of user object",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    "securitySchemes": {
+      "vutt_auth": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+            "scopes": {
+              "write:tools": "modify tools in your account",
+              "read:tools": "read your tools"
+            }
+          }
+        }
+      },
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    }
+  }
+}
