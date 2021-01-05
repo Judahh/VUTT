@@ -976,9 +976,9 @@
     strip-json-comments "^3.1.1"
 
 "@flexiblepersistence/backnextapi@latest":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@flexiblepersistence/backnextapi/-/backnextapi-0.2.0.tgz#108b5268a10dfbf01ac1b2d94b6e2878da008102"
-  integrity sha512-oBEuwkUBMgDcSdWghkbHcNP5HeMtQuVad97P/Hv7CKO/EleaOKJaNNxxFZLjb4S0/op3/PfwEY6kmJxCblwAqw==
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@flexiblepersistence/backnextapi/-/backnextapi-0.2.1.tgz#7adbee8ed937dcb5f4d2dfa48e99a78603c61208"
+  integrity sha512-4zD2CXgWRA2XcprUwyKBEWK314eDRxUn28VSTpUijao/PqSM0W11rF0eo6PY8GqduJtOGdHZYPpyf5NmvmnnYA==
   dependencies:
     "@flexiblepersistence/dao" latest
     "@flexiblepersistence/sequelize" latest
@@ -2042,6 +2042,13 @@ aws4@^1.8.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
+
+axios@latest:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+  dependencies:
+    follow-redirects "^1.10.0"
 
 babel-jest@^26.6.0, babel-jest@^26.6.3:
   version "26.6.3"
@@ -4164,6 +4171,11 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
+follow-redirects@^1.10.0:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.1.tgz#5f69b813376cee4fd0474a3aba835df04ab763b7"
+  integrity sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
+
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -4234,9 +4246,9 @@ fsevents@^1.2.7:
     nan "^2.12.1"
 
 fsevents@^2.1.2:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.0.tgz#ed42dc76d22943057d58a3856ce3885c0f982948"
-  integrity sha512-SmvpCnCbknBKrMhodrIdwGBhn8kAEp8VUyrcH13clA5cq1C5fyN2+b3lQBdjpO1X/yJrTNySaggyYA62h+28ug==
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.1.tgz#b209ab14c61012636c8863507edf7fb68cc54e9f"
+  integrity sha512-YR47Eg4hChJGAB1O3yEAOkGO+rlzutoICGqGo9EZ4lKWokzZRSyIW1QmTzqjtw8MJdj9srP869CuWw/hyzSiBw==
 
 fsevents@~2.1.2:
   version "2.1.3"

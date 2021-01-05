@@ -33,7 +33,8 @@
     "flexiblepersistence": "latest",
     "google-auth-library": "latest",
     "jsonwebtoken": "latest",
-    "bcrypt": "latest"
+    "bcrypt": "latest",
+    "axios": "latest"
   },
   "devDependencies": {
     "@types/cors": "latest",

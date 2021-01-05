@@ -6,14 +6,33 @@ import {
   PersistencePromise,
 } from 'flexiblepersistence';
 import jsonwebtoken from 'jsonwebtoken';
+import { setTimeout } from 'timers';
+import axios from 'axios';
 
 export default class SessionService extends BasicService {
-  public key() {
-    // get from auth if is more than 15m
-    return (
-      process.env.JWT_PUBLIC_KEY ||
-      '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3POpb9/1PwBK9A3vBfXX\nTJuGhTMy8CreeFXEM19/WB6bLqhIXE7IzH40KNnfWnQn1twMshViJBN9eHAiYErn\nF5dJrzjWtIp9xrFhmquYvz/2RyeVflWXH/ZmfO1v15nF7tKjN3+WTM4rAY9wGssl\nGahvs6ET0rp2PG0PLJXXEvYNxHp1OpP21xrWepb3RXCxlCqARq//UNENgFyazpsx\n9Q/V15xvlmUT74mYOGMMEhy/Xw71SEMr/rOElXj2cGZ65fgeBl+vi7Fj/0Z7jk23\nKa4iuaXxElys8cieok77KJrhwFoRae4cJgjY86SfYgipc5PwepOtu1S5k3NRtIEV\nAQIDAQAB\n-----END PUBLIC KEY-----\n'
-    );
+  private publicKey;
+  private timerRunning;
+
+  private async getKey() {
+    const host = process.env.AUTH_HOST;
+    const received = await axios.get(host + '/session');
+    this.publicKey = received.data.key;
+    return this.publicKey;
+  }
+  private clearKey() {
+    this.timerRunning = false;
+    this.getKey();
+  }
+  public async key() {
+    if (this.publicKey) {
+      if (!this.timerRunning) {
+        setTimeout(this.clearKey.bind(this), 15 * 60 * 1000);
+        this.timerRunning = true;
+      }
+      return this.publicKey;
+    } else {
+      return await this.getKey();
+    }
   }
 
   public verifyToken(token): Promise<unknown> {
@@ -69,71 +88,21 @@ export default class SessionService extends BasicService {
   ): Promise<PersistencePromise<{ token?: string }>> {
     // send to auth
     return new Promise(async (resolve, reject) => {
-      const identification = input.item;
-      const subScheme = 'Person';
-      const method = 'read';
-      if (!identification) {
-        const error = new Error('Missing Id.');
+      const host = process.env.AUTH_HOST;
+      try {
+        const received = await axios.post(host + '/session', input.item);
+        resolve({
+          receivedItem: {
+            token: received.data.token,
+          },
+          result: undefined,
+          selectedItem: input.selectedItem,
+          sentItem: input.item,
+        });
+      } catch (error) {
+        error.name = 'Unauthorized';
         reject(error);
-        return;
       }
-
-      const tIdentification = JSON.parse(JSON.stringify(identification));
-      delete tIdentification.password;
-      delete tIdentification.id;
-
-      const newSubInput = {
-        single: true,
-        scheme: subScheme,
-        selectedItem: {
-          identifications: { $elemMatch: tIdentification },
-        },
-      };
-
-      const person: any = await this.journaly?.publish(
-        subScheme + 'Service.' + method,
-        newSubInput
-      );
-
-      if (!person.receivedItem) {
-        const error = new Error('Person was not found.');
-        error.name = 'NotFound';
-        reject(error);
-        return;
-      }
-
-      // const personIdentifications = JSON.parse(
-      //   JSON.stringify(person.receivedItem.identifications)
-      // );
-
-      // const identifications = personIdentifications.filter(
-      //   (element) => element.type === identification.type
-      // );
-
-      // try {
-      //   await this[this.verify[identification.type]](
-      //     identification,
-      //     identifications,
-      //     input.receivedEvent ? input.receivedEvent['headers'] : undefined
-      //   );
-      // } catch (error) {
-      //   reject(error);
-      //   return;
-      // }
-
-      const cleanPerson = JSON.parse(JSON.stringify(person.receivedItem));
-      delete cleanPerson.instances;
-      delete cleanPerson.identifications;
-
-      resolve({
-        receivedItem: {
-          // token: this.sign(cleanPerson),
-        },
-        result: undefined,
-        selectedItem: input.selectedItem,
-        sentItem: input.item,
-      });
-      return;
     });
   }
 }
