@@ -10,7 +10,11 @@ import {
 import { ServiceHandler } from '@flexiblepersistence/service';
 import ToolService from './service/toolService';
 import { eventInfo, readInfo } from './config/databaseInfos';
-import SessionService from './service/sessionService';
+import SignInService from './service/signInService';
+import SignUpService from './service/signUpService';
+import SignOutService from './service/signOutService';
+import AuthenticationService from './service/authenticationService';
+import JsonWebTokenService from './service/jsonWebTokenService';
 import ToolSchema from './database/toolSchema';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,7 +27,11 @@ const database = new MongoDB(readDatabase, { Tool: new ToolSchema() });
 const read = new ServiceHandler(
   readDatabase,
   {
-    session: new SessionService(),
+    signIn: new SignInService(),
+    signUp: new SignUpService(),
+    signOut: new SignOutService(),
+    authentication: new AuthenticationService(),
+    jsonWebToken: new JsonWebTokenService(),
     tool: new ToolService(),
   },
   database

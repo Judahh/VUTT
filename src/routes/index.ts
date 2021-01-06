@@ -1,11 +1,13 @@
 import ToolController from '../controller/toolController';
-import SessionController from '../controller/sessionController';
+import SignUpController from '../controller/signUpController';
+import SignInController from '../controller/signInController';
 import dBHandler from '../dBHandler';
 import {
   RouterSingleton,
   RouterInitializer,
 } from '@flexiblepersistence/backnextapi';
 import Cors from 'cors';
+// import Authentication from '../middleware/authentication';
 
 // Initializing the cors middleware
 const cors = Cors({
@@ -27,15 +29,22 @@ class Index extends RouterSingleton {
         initDefault.middlewares = [];
       initDefault.middlewares.push(cors);
 
-      const session = new SessionController(initDefault);
+      const signIn = new SignInController(initDefault);
+      const signUp = new SignUpController(initDefault);
+      // const authentication = new Authentication(initDefault);
 
-      // initDefault.middlewares.push(session.authentication.bind(session));
-      // initDefault.middlewares.push(session.permission.bind(session));
+      // initDefault.middlewares.push(
+      //   authentication.authentication.bind(authentication)
+      // );
+      // initDefault.middlewares.push(
+      //   authentication.permission.bind(authentication)
+      // );
 
       const tool = new ToolController(initDefault);
 
       this.controller = {
-        session,
+        signIn,
+        signUp,
         tool,
       };
     } else {
