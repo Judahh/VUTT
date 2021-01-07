@@ -7,7 +7,7 @@ import {
   RouterInitializer,
 } from '@flexiblepersistence/backnextapi';
 import Cors from 'cors';
-// import Authentication from '../middleware/authentication';
+import Authentication from '../middleware/authentication';
 
 // Initializing the cors middleware
 const cors = Cors({
@@ -31,14 +31,14 @@ class Index extends RouterSingleton {
 
       const signIn = new SignInController(initDefault);
       const signUp = new SignUpController(initDefault);
-      // const authentication = new Authentication(initDefault);
+      const authentication = new Authentication(initDefault);
 
-      // initDefault.middlewares.push(
-      //   authentication.authentication.bind(authentication)
-      // );
-      // initDefault.middlewares.push(
-      //   authentication.permission.bind(authentication)
-      // );
+      initDefault.middlewares.push(
+        authentication.authentication.bind(authentication)
+      );
+      initDefault.middlewares.push(
+        authentication.permission.bind(authentication)
+      );
 
       const tool = new ToolController(initDefault);
 
