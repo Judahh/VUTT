@@ -11,7 +11,7 @@ import {
 import ToolServiceModel from '../model/tool/toolServiceModel';
 
 export default class ToolService extends BasicService {
-  public formatTags(input: PersistenceInput<ToolServiceSimpleModel>) {
+  formatTags(input: PersistenceInput<ToolServiceSimpleModel>) {
     if (input.selectedItem) {
       if (input.selectedItem['tag'] && !input.selectedItem.tags) {
         input.selectedItem.tags = input.selectedItem['tag'];
