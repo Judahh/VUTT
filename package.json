@@ -16,7 +16,7 @@
     "tsc": "tsc",
     "prestart": "tsc",
     "start": "next start",
-    "dev": "next",
+    "dev": "next -p 3005",
     "build": "next build",
     "export": "next export",
     "test": "jest $npm_package_config_jest",

@@ -15,17 +15,17 @@ export default class KeyService extends BasicService {
     password: process.env.AUTH_PASSWORD,
   };
 
-  config() {
+  async config() {
     return {
       headers: {
-        Authorization: `Bearer ${this.token()}`,
+        authorization: `Bearer ${await this.token()}`,
       },
     };
   }
 
   private async getKey() {
     const host = process.env.AUTH_HOST;
-    const received = await axios.get(host + '/key');
+    const received = await axios.get(host + '/key', await this.config());
     this.publicKey = received.data.key;
     return this.publicKey;
   }

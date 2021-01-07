@@ -7,7 +7,7 @@ export default class AuthenticationService extends BasicService {
     return new Promise(async (resolve, reject) => {
       try {
         const permission = await this.journaly?.publish(
-          'AuthenticationService.verify',
+          'JsonWebTokenService.verify',
           token
         );
         resolve(permission);

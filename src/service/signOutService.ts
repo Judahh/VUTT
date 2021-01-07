@@ -16,8 +16,13 @@ export default class SessionService extends BasicService {
           sentItem: input.item,
         });
       } catch (error) {
-        error.name = 'Unauthorized';
-        reject(error);
+        if (error.response && error.response.data) {
+          const newError = new Error(error.response.data.error);
+          newError.name = 'Unauthorized';
+          reject(newError);
+        } else {
+          reject(error);
+        }
       }
     });
   }

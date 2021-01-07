@@ -43,6 +43,7 @@ class Index extends RouterSingleton {
       const tool = new ToolController(initDefault);
 
       this.controller = {
+        authentication,
         signIn,
         signUp,
         tool,

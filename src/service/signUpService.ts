@@ -9,6 +9,12 @@ export default class SignUpService extends BasicService {
   ): Promise<PersistencePromise<{ token?: string }>> {
     return new Promise(async (resolve, reject) => {
       const host = process.env.AUTH_HOST;
+      input.item.permissions = {};
+      if (process.env.AUTH_IDENTIFICATION)
+        input.item.permissions[process.env.AUTH_IDENTIFICATION] = {
+          all: ['all'],
+        };
+
       try {
         const config = await this.journaly?.publish('KeyService.config');
         const received = await axios.post(host + '/signUp', input.item, config);
@@ -19,8 +25,13 @@ export default class SignUpService extends BasicService {
           sentItem: input.item,
         });
       } catch (error) {
-        error.name = 'Unauthorized';
-        reject(error);
+        if (error.response && error.response.data) {
+          const newError = new Error(error.response.data.error);
+          newError.name = 'Unauthorized';
+          reject(newError);
+        } else {
+          reject(error);
+        }
       }
     });
   }

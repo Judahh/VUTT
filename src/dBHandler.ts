@@ -13,6 +13,7 @@ import { eventInfo, readInfo } from './config/databaseInfos';
 import SignInService from './service/signInService';
 import SignUpService from './service/signUpService';
 import SignOutService from './service/signOutService';
+import KeyService from './service/keyService';
 import AuthenticationService from './service/authenticationService';
 import JsonWebTokenService from './service/jsonWebTokenService';
 import ToolSchema from './database/toolSchema';
@@ -30,6 +31,7 @@ const read = new ServiceHandler(
     signIn: new SignInService(),
     signUp: new SignUpService(),
     signOut: new SignOutService(),
+    key: new KeyService(),
     authentication: new AuthenticationService(),
     jsonWebToken: new JsonWebTokenService(),
     tool: new ToolService(),

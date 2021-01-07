@@ -33,8 +33,6 @@ test('store a tool and check it', async (done) => {
     if (toolStored && toolStored['received'] && toolStored['received'].tags)
       toolStored['received'].tags = toolStored['received'].tags.toObject();
 
-    console.log(toolStored);
-
     expect(toolStored['received']).toStrictEqual({
       id: toolStored['received'].id,
       ...storeTool,
