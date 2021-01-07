@@ -3,7 +3,7 @@ import { BasicService } from '@flexiblepersistence/backnextapi';
 import jsonwebtoken from 'jsonwebtoken';
 
 export default class JsonWebTokenService extends BasicService {
-  public async verify(token): Promise<unknown> {
+  async verify(token): Promise<unknown> {
     return new Promise(async (resolve, reject) => {
       try {
         const key = await this.journaly?.publish('KeyService.key');

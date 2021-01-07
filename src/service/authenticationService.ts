@@ -3,7 +3,7 @@ import { BasicService } from '@flexiblepersistence/backnextapi';
 import { Operation } from 'flexiblepersistence';
 
 export default class AuthenticationService extends BasicService {
-  public authentication(token): Promise<any> {
+  authentication(token): Promise<any> {
     return new Promise(async (resolve, reject) => {
       try {
         const permission = await this.journaly?.publish(
@@ -17,7 +17,7 @@ export default class AuthenticationService extends BasicService {
     });
   }
 
-  public permission(event, permissions): Promise<any> {
+  permission(event, permissions): Promise<any> {
     return new Promise(async (resolve, reject) => {
       try {
         const instanceName = process.env.INSTANCE || 'VUTT';
