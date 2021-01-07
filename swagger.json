@@ -14,19 +14,18 @@
   },
   "servers": [
     {
-      "url": "https://vutt.vercel.app/api",
+      "url": "https://vutt.vercel.app/api/v1",
       "description": "API on vercel"
     },
     {
       "url": "https://virtserver.swaggerhub.com/Judahh/VUTT/1.0.0"
-      
     }
   ],
   "tags": [
     {
       "name": "tools",
       "description": "Everything about tools"
-    },
+    }
   ],
   "paths": {
     "/tools": {
@@ -89,7 +88,7 @@
         "description": "Multiple tags values can be provided with comma separated strings",
         "operationId": "findToolsByTag",
         "parameters": [
-         {
+          {
             "name": "tags",
             "in": "path",
             "description": "Tags to filter by",
@@ -139,7 +138,7 @@
         ]
       }
     },
-    "/tool/{toolId}": {
+    "/tools/{toolId}": {
       "get": {
         "tags": [
           "tools"
@@ -393,7 +392,7 @@
           }
         }
       }
-    },
+    }
   },
   "components": {
     "schemas": {
@@ -406,7 +405,7 @@
       },
       "Tool": {
         "required": [
-          "title",
+          "title"
         ],
         "type": "object",
         "properties": {
@@ -435,7 +434,7 @@
             "items": {
               "$ref": "#/components/schemas/Tag"
             }
-          },
+          }
         },
         "xml": {
           "name": "Tool"
@@ -453,8 +452,8 @@
           },
           "password": {
             "type": "string"
-          },
-        },
+          }
+        }
       },
       "body": {
         "type": "object",
