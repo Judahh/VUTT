@@ -5,7 +5,23 @@ import axios from 'axios';
 
 export default class KeyService extends BasicService {
   private publicKey;
-  private timerRunning;
+  private keyTimerRunning;
+  private authToken;
+  private tokenTimerRunning;
+
+  private credential = {
+    type: 'API',
+    identification: process.env.AUTH_IDENTIFICATION,
+    password: process.env.AUTH_PASSWORD,
+  };
+
+  public config() {
+    return {
+      headers: {
+        Authorization: `Bearer ${this.token()}`,
+      },
+    };
+  }
 
   private async getKey() {
     const host = process.env.AUTH_HOST;
@@ -14,18 +30,39 @@ export default class KeyService extends BasicService {
     return this.publicKey;
   }
   private clearKey() {
-    this.timerRunning = false;
+    this.keyTimerRunning = false;
     this.getKey();
   }
   public async key() {
     if (this.publicKey) {
-      if (!this.timerRunning) {
+      if (!this.keyTimerRunning) {
         setTimeout(this.clearKey.bind(this), 15 * 60 * 1000);
-        this.timerRunning = true;
+        this.keyTimerRunning = true;
       }
       return this.publicKey;
     } else {
       return await this.getKey();
+    }
+  }
+  private async getToken() {
+    const host = process.env.AUTH_HOST;
+    const received = await axios.post(host + '/signIn', this.credential);
+    this.authToken = received.data.token;
+    return this.authToken;
+  }
+  private clearToken() {
+    this.tokenTimerRunning = false;
+    this.getToken();
+  }
+  public async token() {
+    if (this.authToken) {
+      if (!this.tokenTimerRunning) {
+        setTimeout(this.clearToken.bind(this), 15 * 24 * 60 * 60 * 1000);
+        this.tokenTimerRunning = true;
+      }
+      return this.authToken;
+    } else {
+      return await this.getToken();
     }
   }
 }

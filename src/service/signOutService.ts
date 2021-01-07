@@ -5,7 +5,6 @@ import axios from 'axios';
 
 export default class SessionService extends BasicService {
   delete(input: PersistenceInput<any>): Promise<PersistencePromise<undefined>> {
-    // send to auth
     return new Promise(async (resolve, reject) => {
       const host = process.env.AUTH_HOST;
       try {

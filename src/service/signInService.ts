@@ -4,10 +4,7 @@ import { PersistenceInput, PersistencePromise } from 'flexiblepersistence';
 import axios from 'axios';
 
 export default class SignInService extends BasicService {
-  create(
-    input: PersistenceInput<any>
-  ): Promise<PersistencePromise<{ token?: string }>> {
-    // send to auth
+  create(input: PersistenceInput<any>): Promise<PersistencePromise<any>> {
     return new Promise(async (resolve, reject) => {
       const host = process.env.AUTH_HOST;
       try {
