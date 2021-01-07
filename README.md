@@ -2,7 +2,8 @@
 
 ![Publish](https://github.com/Judahh/VUTT/workflows/Publish/badge.svg)
 
-A simple repository for managing tools with their names, links, descriptions and tags
+A simple repository for managing tools with their names, links, descriptions and
+tags
 
 ## [SWAGGER](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/Judahh/VUTT/main/swagger.json)
 
