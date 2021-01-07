@@ -15,7 +15,7 @@ export default class KeyService extends BasicService {
     password: process.env.AUTH_PASSWORD,
   };
 
-  public config() {
+  config() {
     return {
       headers: {
         Authorization: `Bearer ${this.token()}`,
@@ -33,7 +33,7 @@ export default class KeyService extends BasicService {
     this.keyTimerRunning = false;
     this.getKey();
   }
-  public async key() {
+  async key() {
     if (this.publicKey) {
       if (!this.keyTimerRunning) {
         setTimeout(this.clearKey.bind(this), 15 * 60 * 1000);
@@ -41,7 +41,7 @@ export default class KeyService extends BasicService {
       }
       return this.publicKey;
     } else {
-      return await this.getKey();
+      return this.getKey();
     }
   }
   private async getToken() {
@@ -54,7 +54,7 @@ export default class KeyService extends BasicService {
     this.tokenTimerRunning = false;
     this.getToken();
   }
-  public async token() {
+  async token() {
     if (this.authToken) {
       if (!this.tokenTimerRunning) {
         setTimeout(this.clearToken.bind(this), 15 * 24 * 60 * 60 * 1000);
@@ -62,7 +62,7 @@ export default class KeyService extends BasicService {
       }
       return this.authToken;
     } else {
-      return await this.getToken();
+      return this.getToken();
     }
   }
 }
