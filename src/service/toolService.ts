@@ -88,7 +88,6 @@ export default class ToolService extends BasicService {
   ): Promise<PersistencePromise<ToolServiceModel>> {
     this.formatInput(input);
     const deleted = await super.delete(input);
-    // console.log(deleted);
     this.formatMongoReturnedItem(deleted);
     return deleted;
   }
