@@ -78,6 +78,9 @@ export default class ToolService extends BasicService {
     input: PersistenceInputUpdate<ToolServiceSimpleModel>
   ): Promise<PersistencePromise<ToolServiceModel>> {
     this.formatInput(input);
+    input.options = {
+      returnOriginal: false,
+    };
     return super.update(input);
   }
   async delete(

@@ -29,38 +29,13 @@
   ],
   "paths": {
     "/tools": {
-      "put": {
-        "tags": [
-          "tools"
-        ],
-        "summary": "Update an existing tool",
-        "operationId": "updateTool",
-        "requestBody": {
-          "$ref": "#/components/requestBodies/Tool"
-        },
-        "responses": {
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Tool not found"
-          }
-        },
-        "security": [
-          {
-            "vutt_auth": [
-              "write:tools",
-              "read:tools"
-            ]
-          }
-        ]
-      },
       "post": {
         "tags": [
           "tools"
         ],
         "summary": "Add a new tool",
         "operationId": "addTool",
+        "parameters": [],
         "requestBody": {
           "$ref": "#/components/requestBodies/Tool"
         },
@@ -71,34 +46,114 @@
         },
         "security": [
           {
-            "vutt_auth": [
-              "write:tools",
-              "read:tools"
+            "authorization": [
+              "create"
             ]
           }
         ]
-      }
-    },
-    "/tools/tag={tags}": {
+      },
       "get": {
         "tags": [
           "tools"
         ],
-        "summary": "Finds Tools by tag",
+        "summary": "Finds Tools by selection",
         "description": "Multiple tags values can be provided with comma separated strings",
-        "operationId": "findToolsByTag",
+        "operationId": "findTools",
         "parameters": [
           {
+            "name": "id",
+            "in": "query",
+            "description": "Select by id",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "tags",
-            "in": "path",
+            "in": "query",
             "description": "Tags to filter by",
-            "required": true,
+            "required": false,
             "explode": true,
             "schema": {
               "type": "array",
               "items": {
                 "type": "string"
               }
+            }
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "Tags to filter by",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "description": "Filter by title",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "containsTitle",
+            "in": "query",
+            "description": "Filter by part of title",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "link",
+            "in": "query",
+            "description": "Filter by link",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "containsLink",
+            "in": "query",
+            "description": "Filter by part of link",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "Filter by description",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "containsDescription",
+            "in": "query",
+            "description": "Filter by part of description",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -107,14 +162,6 @@
             "description": "successful operation",
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Tool"
-                  }
-                }
-              },
-              "application/xml": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -130,15 +177,257 @@
         },
         "security": [
           {
-            "vutt_auth": [
-              "write:tools",
-              "read:tools"
+            "authorization": [
+              "read"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "tools"
+        ],
+        "summary": "Update selected tools",
+        "operationId": "updateTools",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Select by id",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "Tags to filter by",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "Tags to filter by",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "description": "Filter by title",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "containsTitle",
+            "in": "query",
+            "description": "Filter by part of title",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "link",
+            "in": "query",
+            "description": "Filter by link",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "containsLink",
+            "in": "query",
+            "description": "Filter by part of link",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "Filter by description",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "containsDescription",
+            "in": "query",
+            "description": "Filter by part of description",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Tool"
+        },
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Tool not found"
+          }
+        },
+        "security": [
+          {
+            "authorization": [
+              "update"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "tools"
+        ],
+        "summary": "Deletes selected tools",
+        "operationId": "deleteTools",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Select by id",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "Tags to filter by",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "Tags to filter by",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "description": "Filter by title",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "containsTitle",
+            "in": "query",
+            "description": "Filter by part of title",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "link",
+            "in": "query",
+            "description": "Filter by link",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "containsLink",
+            "in": "query",
+            "description": "Filter by part of link",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "Filter by description",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "containsDescription",
+            "in": "query",
+            "description": "Filter by part of description",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Tool not found"
+          }
+        },
+        "security": [
+          {
+            "authorization": [
+              "delete"
             ]
           }
         ]
       }
     },
-    "/tools/{toolId}": {
+    "/tools/{id}": {
       "get": {
         "tags": [
           "tools"
@@ -148,7 +437,7 @@
         "operationId": "getToolById",
         "parameters": [
           {
-            "name": "toolId",
+            "name": "id",
             "in": "path",
             "description": "ID of tool to return",
             "required": true,
@@ -168,11 +457,6 @@
                 "schema": {
                   "$ref": "#/components/schemas/Tool"
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Tool"
-                }
               }
             }
           },
@@ -185,11 +469,13 @@
         },
         "security": [
           {
-            "api_key": []
+            "authorization": [
+              "read"
+            ]
           }
         ]
       },
-      "post": {
+      "put": {
         "tags": [
           "tools"
         ],
@@ -197,7 +483,7 @@
         "operationId": "updateToolWithForm",
         "parameters": [
           {
-            "name": "toolId",
+            "name": "id",
             "in": "path",
             "description": "ID of tool that needs to be updated",
             "required": true,
@@ -225,9 +511,8 @@
         },
         "security": [
           {
-            "vutt_auth": [
-              "write:tools",
-              "read:tools"
+            "authorization": [
+              "update"
             ]
           }
         ]
@@ -240,17 +525,7 @@
         "operationId": "deleteTool",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "header",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "toolId",
+            "name": "id",
             "in": "path",
             "description": "Tool id to delete",
             "required": true,
@@ -272,15 +547,14 @@
         },
         "security": [
           {
-            "vutt_auth": [
-              "write:tools",
-              "read:tools"
+            "authorization": [
+              "delete"
             ]
           }
         ]
       }
     },
-    "/user": {
+    "/signUp": {
       "post": {
         "tags": [
           "user"
@@ -288,6 +562,32 @@
         "summary": "Create user",
         "description": "This can only be done by the logged in user.",
         "operationId": "createUser",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "Google accessToken",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "format": "oid"
+            }
+          },
+          {
+            "name": "tokenId",
+            "in": "header",
+            "description": "Google tokenId",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "format": "oid"
+            }
+          }
+        ],
         "requestBody": {
           "description": "Created user object",
           "content": {
@@ -301,13 +601,54 @@
         },
         "responses": {
           "default": {
-            "description": "successful operation"
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "oid"
+                    },
+                    "givenName": {
+                      "type": "string"
+                    },
+                    "familyName": {
+                      "type": "string"
+                    },
+                    "instances": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Instance"
+                      }
+                    },
+                    "permissions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Permission"
+                      }
+                    },
+                    "identifications": {
+                      "type": "array",
+                      "xml": {
+                        "name": "identification",
+                        "wrapped": true
+                      },
+                      "items": {
+                        "$ref": "#/components/schemas/IdentificationSimple"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
-    "/user/login": {
-      "get": {
+    "/signIn": {
+      "post": {
         "tags": [
           "user"
         ],
@@ -315,80 +656,60 @@
         "operationId": "loginUser",
         "parameters": [
           {
-            "name": "username",
-            "in": "query",
-            "description": "The user name for login",
-            "required": true,
-            "style": "form",
-            "explode": true,
+            "name": "accessToken",
+            "in": "header",
+            "description": "Google accessToken",
+            "required": false,
+            "style": "simple",
+            "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "oid"
             }
           },
           {
-            "name": "password",
-            "in": "query",
-            "description": "The password for login in clear text",
-            "required": true,
-            "style": "form",
-            "explode": true,
+            "name": "tokenId",
+            "in": "header",
+            "description": "Google tokenId",
+            "required": false,
+            "style": "simple",
+            "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "oid"
             }
           }
         ],
+        "requestBody": {
+          "description": "Created user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Identification"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "successful operation",
-            "headers": {
-              "X-Rate-Limit": {
-                "description": "calls per hour allowed by the user",
-                "style": "simple",
-                "explode": false,
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              },
-              "X-Expires-After": {
-                "description": "date in UTC when token expires",
-                "style": "simple",
-                "explode": false,
-                "schema": {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "string"
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "format": "jwt"
+                    }
+                  }
                 }
               }
             }
           },
           "400": {
             "description": "Invalid username/password supplied"
-          }
-        }
-      }
-    },
-    "/user/logout": {
-      "get": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Logs out current logged in user session",
-        "operationId": "logoutUser",
-        "responses": {
-          "default": {
-            "description": "successful operation"
           }
         }
       }
@@ -401,6 +722,49 @@
         "example": "planning",
         "xml": {
           "name": "Tag"
+        }
+      },
+      "Instance": {
+        "type": "string"
+      },
+      "Permission": {
+        "type": "object"
+      },
+      "IdentificationSimple": {
+        "type": "object",
+        "properties": {
+          "identification": {
+            "type": "string",
+            "format": "oid"
+          },
+          "type": {
+            "type": "string",
+            "format": "enum",
+            "example": [
+              "GOOGLE",
+              "LOCAL"
+            ]
+          }
+        }
+      },
+      "Identification": {
+        "type": "object",
+        "properties": {
+          "identification": {
+            "type": "string",
+            "format": "oid"
+          },
+          "type": {
+            "type": "string",
+            "format": "enum",
+            "example": [
+              "GOOGLE",
+              "LOCAL"
+            ]
+          },
+          "password": {
+            "type": "string"
+          }
         }
       },
       "Tool": {
@@ -447,11 +811,21 @@
             "type": "string",
             "format": "oid"
           },
-          "name": {
+          "givenName": {
             "type": "string"
           },
-          "password": {
+          "familyName": {
             "type": "string"
+          },
+          "identifications": {
+            "type": "array",
+            "xml": {
+              "name": "identification",
+              "wrapped": true
+            },
+            "items": {
+              "$ref": "#/components/schemas/Identification"
+            }
           }
         }
       },
@@ -477,11 +851,6 @@
             "schema": {
               "$ref": "#/components/schemas/Tool"
             }
-          },
-          "application/xml": {
-            "schema": {
-              "$ref": "#/components/schemas/Tool"
-            }
           }
         },
         "required": true
@@ -502,22 +871,10 @@
       }
     },
     "securitySchemes": {
-      "vutt_auth": {
-        "type": "oauth2",
-        "flows": {
-          "implicit": {
-            "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
-            "scopes": {
-              "write:tools": "modify tools in your account",
-              "read:tools": "read your tools"
-            }
-          }
-        }
-      },
-      "api_key": {
-        "type": "apiKey",
-        "name": "api_key",
-        "in": "header"
+      "authorization": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
       }
     }
   }
