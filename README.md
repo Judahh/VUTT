@@ -61,10 +61,10 @@ $ yarn dev
 
 It will run on port 3000
 
-
 ## Environment
 
-- Staging: [https://vutt-git-development.judahh.vercel.app](https://vutt-git-development.judahh.vercel.app)
+- Staging:
+  [https://vutt-git-development.judahh.vercel.app](https://vutt-git-development.judahh.vercel.app)
 - Production: [https://vutt.vercel.app](https://vutt.vercel.app)
 
 ## People
