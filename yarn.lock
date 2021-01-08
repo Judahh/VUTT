@@ -969,9 +969,9 @@
     strip-json-comments "^3.1.1"
 
 "@flexiblepersistence/backnextapi@latest":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@flexiblepersistence/backnextapi/-/backnextapi-0.2.2.tgz#8c5bd32c8aeb10fba9dbd374726de8e656804446"
-  integrity sha512-vriR2q+CH9b7JuzlJvHg65n0RenziHnRNvYV9p/bszGMVw9d5i5BSpatvletabjnpHTb/wqe/KgfvVhRtEg9mQ==
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@flexiblepersistence/backnextapi/-/backnextapi-0.2.4.tgz#f180438055d4a7313d1988d447df0276b6cc5f9f"
+  integrity sha512-jjKpJMaPFqE0XBr5lmQKyjjDJJLxU+wup6j8FSKFH58gLxcT3SgxisBs5b1cS4CmeAiaBWSyjZ4cyb3TB218vA==
   dependencies:
     "@flexiblepersistence/dao" latest
     "@flexiblepersistence/sequelize" latest
@@ -985,9 +985,9 @@
     ts-mixer latest
 
 "@flexiblepersistence/dao@latest":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@flexiblepersistence/dao/-/dao-0.2.6.tgz#c138d1745107f33d2a9b352d5851bbe4dd3ef5ba"
-  integrity sha512-TFjdpoq6ggj2Vi3y/uT/p6HHd5LegEuGCQ4uH19VxlHaMJ/5dxr1zxQPC3Z1aFgCfO1qNx+COitSHv0UCzFXwQ==
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@flexiblepersistence/dao/-/dao-0.2.8.tgz#ebe0ccd433e6a16460f8bec1c22cd17bfbb2730d"
+  integrity sha512-fS5r3+R2mJWvDN9B+Op4svNJtZ06GulV1EYrHVOFqiCNGTTuSp+LlG5cKwlsLJReJElMumASDRVSvX8bqE3lCg==
   dependencies:
     bignumber.js latest
     journaly latest
@@ -1003,9 +1003,9 @@
     ts-mixer latest
 
 "@flexiblepersistence/sequelize@latest":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@flexiblepersistence/sequelize/-/sequelize-0.0.12.tgz#dee531e5cee68598b36b0c95f1bf2b273e7d29fd"
-  integrity sha512-5Vjxa3CUKpz6FFmmtKMczIS+Msf3w3V6046L5zN+xn3pH/Vx6dXz0LLKsSgtitIrSiX0OOy4eEnJMBTQ2zAwPA==
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@flexiblepersistence/sequelize/-/sequelize-0.0.14.tgz#04ffe9156a72c6ba29555b324c4451a3155b978b"
+  integrity sha512-ZCwV0fO1WRsEB+vvJ4hE/xW1Q7Oh9TRROrNL+f94h50QjEVZ8bDeNd9KZPRz0HaryqNpA3Q52VN1NqusILa/0w==
   dependencies:
     journaly latest
     pg latest
@@ -1013,9 +1013,9 @@
     ts-mixer latest
 
 "@flexiblepersistence/service@latest":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@flexiblepersistence/service/-/service-0.1.14.tgz#16f1b1d2791a92d99a4eecf077c8117e66a2e817"
-  integrity sha512-mubdav1ww2frBwpWhYJ6wg+EeP6RypEjS54mlz8JeT98rCt/cUn/HBCNJbukDRpqYuxYs96y76tLUCb67rEdMg==
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/@flexiblepersistence/service/-/service-0.1.16.tgz#db77ff320dc3ee3b883c80e8c722f65a297fdd51"
+  integrity sha512-F+PVvoB1Uz8/iYmKPmF6Pfwgh+buXDPzovvWlpwKEXzQdQ4FLCW++fg9jIIYeOd5ehRFhzDyXo77TRBuAkW3kA==
   dependencies:
     journaly latest
     ts-mixer latest
@@ -3104,9 +3104,9 @@ cssstyle@^2.2.0:
     cssom "~0.3.6"
 
 csstype@^3.0.2:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.5.tgz#7fdec6a28a67ae18647c51668a9ff95bb2fa7bb8"
-  integrity sha512-uVDi8LpBUKQj6sdxNaTetL6FpeCqTjOvAQuQUa/qAqq8oOd4ivkbhgnqayl0dnPal8Tb/yB1tF+gOvCBiicaiQ==
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.6.tgz#865d0b5833d7d8d40f4e5b8a6d76aea3de4725ef"
+  integrity sha512-+ZAmfyWMT7TiIlzdqJgjMb7S4f1beorDbWbsocyK4RaiqA5RTX3K14bnBWmmA9QEM0gRdsjyyrEmcyga8Zsxmw==
 
 cyclist@^1.0.1:
   version "1.0.1"
@@ -4151,9 +4151,9 @@ flatted@^3.1.0:
   integrity sha512-tW+UkmtNg/jv9CSofAKvgVcO7c2URjhTdW1ZTkcAritblu8tajiYy7YisnIflEwtKssCtOxpnBRoCB7iap0/TA==
 
 flexiblepersistence@latest:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/flexiblepersistence/-/flexiblepersistence-1.2.6.tgz#3ad18c8164849f1f14fb50b6fb4dcf97818d2827"
-  integrity sha512-VUboniPMSiarWmmd2KzJD4sDNaevgLt7hkihwkkP1oPlP4YaMgPuK8MkHnY0lg54wd7zhZ/lP+wsnAUQtYZffA==
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/flexiblepersistence/-/flexiblepersistence-1.3.1.tgz#131c9a23edd4132dfa065b0f02ee1a15a22dd22c"
+  integrity sha512-dfj0T7NF9pCRL1/MlZ2KPBwN8GLAVwqV4fL3R8vvBslM+UwH8BBzKrkcOal2DwpMEuwBLxabLc8jjnI79qG3Sw==
   dependencies:
     "@flexiblepersistence/default-initializer" latest
     journaly latest
@@ -4429,9 +4429,9 @@ globby@^11.0.1:
     slash "^3.0.0"
 
 google-auth-library@latest:
-  version "6.1.3"
-  resolved "https://registry.yarnpkg.com/google-auth-library/-/google-auth-library-6.1.3.tgz#39d868140b70d0c4b32c6f6d8f4ccc1400d84dca"
-  integrity sha512-m9mwvY3GWbr7ZYEbl61isWmk+fvTmOt0YNUfPOUY2VH8K5pZlAIWJjxEi0PqR3OjMretyiQLI6GURMrPSwHQ2g==
+  version "6.1.4"
+  resolved "https://registry.yarnpkg.com/google-auth-library/-/google-auth-library-6.1.4.tgz#bc70c4f3b6681ae5273343466bcef37577b7ee44"
+  integrity sha512-q0kYtGWnDd9XquwiQGAZeI2Jnglk7NDi0cChE4tWp6Kpo/kbqnt9scJb0HP+/xqt03Beqw/xQah1OPrci+pOxw==
   dependencies:
     arrify "^2.0.0"
     base64-js "^1.3.0"
@@ -6390,9 +6390,9 @@ nearley@^2.7.10:
     randexp "0.4.6"
 
 needle@^2.5.0:
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/needle/-/needle-2.5.2.tgz#cf1a8fce382b5a280108bba90a14993c00e4010a"
-  integrity sha512-LbRIwS9BfkPvNwNHlsA41Q29kL2L/6VaOJ0qisM5lLWsTV3nP15abO5ITL6L81zqFhzjRKDAYjpcBcwM0AVvLQ==
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/needle/-/needle-2.6.0.tgz#24dbb55f2509e2324b4a99d61f413982013ccdbe"
+  integrity sha512-KKYdza4heMsEfSWD7VPUIz3zX2XDwOyX2d+geb4vrERZMT5RMU6ujjaD+I5Yr54uZxQ2w6XRTAhHBbSCyovZBg==
   dependencies:
     debug "^3.2.6"
     iconv-lite "^0.4.4"
