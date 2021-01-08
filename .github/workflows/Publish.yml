@@ -54,13 +54,3 @@ jobs:
           # If we were running the job on the VM this would be localhost
           MONGO_HOST: mongo
           MONGO_PORT: ${{ job.services.mongo.ports[27017] }}
-      - name: Deploy google app engine
-        uses: vijayp23/deploy-gae-action@main
-        with:
-          service-account: ${{ secrets.SERVICE_ACCOUNT }}
-          project-id: ${{ secrets.PROJECT_ID }}
-          config-files: './app.yml'
-          # Optional
-          delete-previous-versions: true              #default value : false
-          service-name: ${{ secrets.SERVICE_NAME }}   #default value : default
-          debug: false
