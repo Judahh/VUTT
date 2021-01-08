@@ -15,8 +15,8 @@
   "scripts": {
     "tsc": "tsc",
     "prestart": "tsc",
-    "start": "next start -p $PORT",
-    "dev": "next -p $PORT",
+    "start": "next start",
+    "dev": "next",
     "build": "next build",
     "export": "next export",
     "test": "jest $npm_package_config_jest",
