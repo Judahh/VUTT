@@ -1,5 +1,5 @@
 // file deepcode ignore no-any: any needed
-import { Event, Operation } from '@flexiblepersistence/backnextapi';
+import { Event, Operation } from '@backapirest/next';
 import dBHandler from '../../src/dBHandler';
 import ToolController from '../../src/controller/toolController';
 import { NextApiRequest as Request, NextApiResponse as Response } from 'next';

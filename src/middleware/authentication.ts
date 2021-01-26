@@ -1,4 +1,4 @@
-import { BaseControllerDefault } from '@flexiblepersistence/backnextapi';
+import { BaseControllerDefault } from '@backapirest/next';
 export default class Authentication extends BaseControllerDefault {
   async authentication(req, _res, fn) {
     if (req.headers.authorization) {

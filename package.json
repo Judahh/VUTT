@@ -16,7 +16,7 @@
     "tsc": "tsc",
     "prestart": "tsc",
     "start": "next start",
-    "dev": "next",
+    "dev": "next -p 3005",
     "build": "next build",
     "export": "next export",
     "test": "jest $npm_package_config_jest",
@@ -25,7 +25,7 @@
     "integration:coveralls": "jest $npm_package_config_integration_config $npm_package_config_jest && coveralls < $npm_package_config_integration_coverall && rm -rf ./tests/integration/coverage/coverage"
   },
   "dependencies": {
-    "@flexiblepersistence/backnextapi": "latest",
+    "@backapirest/next": "latest",
     "@flexiblepersistence/service": "latest",
     "cors": "latest",
     "next": "latest",
@@ -54,13 +54,13 @@
     "sucrase": "latest",
     "ts-jest": "latest",
     "typescript": "latest",
-    "@babel/preset-env": "^7.12.1",
-    "@babel/preset-react": "^7.12.1",
-    "babel-jest": "^26.6.0",
-    "babel-plugin-root-import": "^6.5.0",
-    "babel-plugin-styled-components": "^1.11.1",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.5",
-    "jest-cli": "^26.6.0"
+    "@babel/preset-env": "latest",
+    "@babel/preset-react": "latest",
+    "babel-jest": "latest",
+    "babel-plugin-root-import": "latest",
+    "babel-plugin-styled-components": "latest",
+    "enzyme": "latest",
+    "enzyme-adapter-react-16": "latest",
+    "jest-cli": "latest"
   }
 }
