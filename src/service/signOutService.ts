@@ -1,5 +1,5 @@
 // file deepcode ignore no-any: any needed
-import { BasicService } from '@flexiblepersistence/backnextapi';
+import { BasicService } from '@backapirest/next';
 import { PersistenceInput, PersistencePromise } from 'flexiblepersistence';
 import axios from 'axios';
 

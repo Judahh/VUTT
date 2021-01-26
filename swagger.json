@@ -762,7 +762,7 @@
               "LOCAL"
             ]
           },
-          "password": {
+          "key": {
             "type": "string"
           }
         }

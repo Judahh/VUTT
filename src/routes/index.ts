@@ -2,10 +2,7 @@ import ToolController from '../controller/toolController';
 import SignUpController from '../controller/signUpController';
 import SignInController from '../controller/signInController';
 import dBHandler from '../dBHandler';
-import {
-  RouterSingleton,
-  RouterInitializer,
-} from '@flexiblepersistence/backnextapi';
+import { RouterSingleton, RouterInitializer } from '@backapirest/next';
 import Cors from 'cors';
 import Authentication from '../middleware/authentication';
 

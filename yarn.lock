@@ -939,6 +939,16 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@backapirest/next@latest":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@backapirest/next/-/next-0.1.0.tgz#f22f201b439d5a8d3f13682a62af2da1474d6bf7"
+  integrity sha512-8wDytsAsIjNTuLIOxqtF0tdoeIw0yF000hfPvb01WYASk8s0lDFGUaRxxpGhz6qAxMRkmA6kPAlOPDHL3d2otA==
+  dependencies:
+    backapirest latest
+    next latest
+    react latest
+    react-dom latest
+
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
@@ -967,22 +977,6 @@
     lodash "^4.17.19"
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
-
-"@flexiblepersistence/backnextapi@latest":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@flexiblepersistence/backnextapi/-/backnextapi-0.2.4.tgz#f180438055d4a7313d1988d447df0276b6cc5f9f"
-  integrity sha512-jjKpJMaPFqE0XBr5lmQKyjjDJJLxU+wup6j8FSKFH58gLxcT3SgxisBs5b1cS4CmeAiaBWSyjZ4cyb3TB218vA==
-  dependencies:
-    "@flexiblepersistence/dao" latest
-    "@flexiblepersistence/sequelize" latest
-    "@flexiblepersistence/service" latest
-    flexiblepersistence latest
-    journaly latest
-    next latest
-    pg latest
-    react latest
-    react-dom latest
-    ts-mixer latest
 
 "@flexiblepersistence/dao@latest":
   version "0.2.8"
@@ -2142,6 +2136,20 @@ babel-preset-jest@^26.6.2:
   dependencies:
     babel-plugin-jest-hoist "^26.6.2"
     babel-preset-current-node-syntax "^1.0.0"
+
+backapirest@latest:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/backapirest/-/backapirest-0.1.0.tgz#a52cb79fcd4512a76a6ad315d3bfd0342cf14837"
+  integrity sha512-34WkjsKSbAmr0nx3JrwFDGGdyDws4Wd3UgomXSU0duPcnNPMNVDm7jKCsEwoonEgZxMEyrvwgx3+uu28wnziBw==
+  dependencies:
+    "@flexiblepersistence/dao" latest
+    "@flexiblepersistence/sequelize" latest
+    "@flexiblepersistence/service" latest
+    cors latest
+    flexiblepersistence latest
+    journaly latest
+    pg latest
+    ts-mixer latest
 
 balanced-match@^1.0.0:
   version "1.0.0"

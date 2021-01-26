@@ -1,5 +1,5 @@
 // file deepcode ignore no-any: any needed
-import { BasicService } from '@flexiblepersistence/backnextapi';
+import { BasicService } from '@backapirest/next';
 import { setTimeout } from 'timers';
 import axios from 'axios';
 
@@ -12,7 +12,7 @@ export default class KeyService extends BasicService {
   private credential = {
     type: 'API',
     identification: process.env.AUTH_IDENTIFICATION,
-    password: process.env.AUTH_PASSWORD,
+    key: process.env.AUTH_PASSWORD,
   };
 
   async config() {
@@ -29,14 +29,14 @@ export default class KeyService extends BasicService {
     this.publicKey = received.data.key;
     return this.publicKey;
   }
-  private clearKey() {
+  private refreshKey() {
     this.keyTimerRunning = false;
     this.getKey();
   }
   async key() {
     if (this.publicKey) {
       if (!this.keyTimerRunning) {
-        setTimeout(this.clearKey.bind(this), 15 * 60 * 1000);
+        setTimeout(this.refreshKey.bind(this), 15 * 60 * 1000);
         this.keyTimerRunning = true;
       }
       return this.publicKey;
@@ -50,14 +50,14 @@ export default class KeyService extends BasicService {
     this.authToken = received.data.token;
     return this.authToken;
   }
-  private clearToken() {
+  private refreshToken() {
     this.tokenTimerRunning = false;
     this.getToken();
   }
   async token() {
     if (this.authToken) {
       if (!this.tokenTimerRunning) {
-        setTimeout(this.clearToken.bind(this), 15 * 24 * 60 * 60 * 1000);
+        setTimeout(this.refreshToken.bind(this), 15 * 24 * 60 * 60 * 1000);
         this.tokenTimerRunning = true;
       }
       return this.authToken;

@@ -1,4 +1,4 @@
-import { BasicService } from '@flexiblepersistence/backnextapi';
+import { BasicService } from '@backapirest/next';
 import ToolServiceSimpleModel from '../model/tool/toolServiceSimpleModel';
 import {
   PersistencePromise,

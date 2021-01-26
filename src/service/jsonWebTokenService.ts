@@ -1,5 +1,5 @@
 // file deepcode ignore no-any: any needed
-import { BasicService } from '@flexiblepersistence/backnextapi';
+import { BasicService } from '@backapirest/next';
 import jsonwebtoken from 'jsonwebtoken';
 
 export default class JsonWebTokenService extends BasicService {
