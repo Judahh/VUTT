@@ -36,8 +36,7 @@
     "google-auth-library": "latest",
     "helmet": "latest",
     "jsonwebtoken": "latest",
-    "next": "latest",
-    "swagger-ui-express": "^4.1.6"
+    "next": "latest"
   },
   "devDependencies": {
     "@babel/preset-env": "latest",
