@@ -10,7 +10,7 @@ export default class KeyService extends BasicService {
   private tokenTimerRunning;
 
   private credential = {
-    type: 'API',
+    type: 'SERVICE',
     identification: process.env.AUTH_IDENTIFICATION,
     key: process.env.AUTH_PASSWORD,
   };
