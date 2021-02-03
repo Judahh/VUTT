@@ -4,11 +4,19 @@ import SignInController from '../controller/signInController';
 import dBHandler from '../dBHandler';
 import { RouterSingleton, RouterInitializer } from '@backapirest/next';
 import Cors from 'cors';
+import Helmet from 'helmet';
+import Limit from 'express-rate-limit';
 import Authentication from '../middleware/authentication';
 
 // Initializing the cors middleware
 const cors = Cors({
   methods: ['GET', 'HEAD'],
+});
+
+// Initializing the limit middleware
+const limit = Limit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
 });
 
 class Index extends RouterSingleton {
@@ -25,6 +33,8 @@ class Index extends RouterSingleton {
       )
         initDefault.middlewares = [];
       initDefault.middlewares.push(cors);
+      initDefault.middlewares.push(Helmet());
+      initDefault.middlewares.push(limit);
 
       const signIn = new SignInController(initDefault);
       const signUp = new SignUpController(initDefault);
