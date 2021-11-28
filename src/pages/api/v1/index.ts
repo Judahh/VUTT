@@ -1,8 +1,3 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { requestAllow } from '@backapirest/next';
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { method } = req;
-  res['method'] = method + 'Allow';
-};
-
-export default handler;
+export default requestAllow;
