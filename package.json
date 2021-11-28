@@ -27,6 +27,7 @@
   "dependencies": {
     "@backapirest/next": "latest",
     "@flexiblepersistence/service": "latest",
+    "@midware/mauth": "latest",
     "axios": "latest",
     "bcrypt": "latest",
     "cors": "latest",

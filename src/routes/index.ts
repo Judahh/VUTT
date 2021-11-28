@@ -1,12 +1,11 @@
 import ToolController from '../controller/toolController';
-import SignUpController from '../controller/signUpController';
-import SignInController from '../controller/signInController';
-import dBHandler from '../dBHandler';
-import { RouterSingleton, RouterInitializer } from '@backapirest/next';
+import { RouterSingleton } from '@backapirest/next';
+import { IRouter } from 'backapi';
 import Cors from 'cors';
 import Helmet from 'helmet';
 import Limit from 'express-rate-limit';
-import Authentication from '../middleware/authentication';
+import { Mauth } from '@midware/mauth';
+import { default as limitConfig } from '../config/limit.json';
 
 // Initializing the cors middleware
 const cors = Cors({
@@ -15,18 +14,21 @@ const cors = Cors({
 
 // Initializing the limit middleware
 const limit = Limit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  ...limitConfig,
+  keyGenerator: function (req) {
+    return req.headers['x-real-ip'];
+  },
 });
 
-class Index extends RouterSingleton {
+export default class Index extends RouterSingleton {
   getNames(array) {
     return array.map((value) => {
       return value.name;
     });
   }
-  createRoutes(initDefault?: RouterInitializer): void {
+  createRoutes(initDefault?: IRouter): void {
     if (initDefault) {
+      const mauth = new Mauth();
       if (
         !initDefault.middlewares ||
         this.getNames(initDefault.middlewares).includes(cors.name)
@@ -36,31 +38,16 @@ class Index extends RouterSingleton {
       initDefault.middlewares.push(Helmet());
       initDefault.middlewares.push(limit);
 
-      const signIn = new SignInController(initDefault);
-      const signUp = new SignUpController(initDefault);
-      const authentication = new Authentication(initDefault);
-
       initDefault.middlewares.push(
-        authentication.authentication.bind(authentication)
-      );
-      initDefault.middlewares.push(
-        authentication.permission.bind(authentication)
+        mauth.authentication.bind(mauth),
+        mauth.permission.bind(mauth)
       );
 
-      const tool = new ToolController(initDefault);
-
-      this.controller = {
-        authentication,
-        signIn,
-        signUp,
-        tool,
-      };
+      if (!this.controller) this.controller = {};
+      if (!this.controller.tool)
+        this.controller.tool = new ToolController(initDefault);
     } else {
       throw new Error('Must init Init Default');
     }
   }
 }
-
-Index.getInstance().createRoutes(dBHandler.getInit());
-
-export default Index.getInstance();
