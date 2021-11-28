@@ -1,13 +1,13 @@
 // file deepcode ignore no-any: any needed
-import { Event, Operation } from '@backapirest/next';
-import dBHandler from '../../src/dBHandler';
+import dBHandler, { write, read } from '../../src/dBHandler';
 import ToolController from '../../src/controller/toolController';
 import { NextApiRequest as Request, NextApiResponse as Response } from 'next';
 import { mockResponse } from './response.mock';
+import { Event, Operation } from 'flexiblepersistence';
 
-test('store a tool and check it', async (done) => {
+test('store a tool and check it', async () => {
   const handler = dBHandler.getHandler();
-  await handler.getWrite().clear();
+  await handler?.getWrite()?.clear();
   const tool = new ToolController(dBHandler.getInit());
   try {
     const storeTool = {
@@ -24,10 +24,10 @@ test('store a tool and check it', async (done) => {
       ],
     };
     const toolStored = await tool.store(
-      ({
+      {
         body: storeTool,
-      } as unknown) as Request,
-      (mockResponse as unknown) as Response
+      } as unknown as Request,
+      mockResponse as unknown as Response
     );
 
     if (toolStored && toolStored['received'] && toolStored['received'].tags)
@@ -39,16 +39,18 @@ test('store a tool and check it', async (done) => {
     });
   } catch (error) {
     console.error(error);
-    await handler.getWrite().clear();
+    await handler?.getWrite()?.clear();
     await handler.addEvent(
       new Event({ operation: Operation.delete, name: 'Tool', single: false })
     );
     expect(error).toBe(null);
-    done();
+    write.close();
+    read.close();
   }
-  await handler.getWrite().clear();
+  await handler?.getWrite()?.clear();
   await handler.addEvent(
     new Event({ operation: Operation.delete, name: 'Tool', single: false })
   );
-  done();
+  write.close();
+  read.close();
 });

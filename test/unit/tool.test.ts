@@ -1,11 +1,11 @@
-import { PersistenceInput } from 'flexiblepersistence';
+import { IInput } from 'flexiblepersistence';
 import ToolServiceSimpleModel from '../../src/model/tool/toolServiceSimpleModel';
 import ToolService from '../../src/service/toolService';
 
-test('format sent tags and check it', async (done) => {
+test('format sent tags and check it', async () => {
   const tool = new ToolService();
   try {
-    const inputTool: PersistenceInput<ToolServiceSimpleModel> = {
+    const inputTool: IInput<ToolServiceSimpleModel> = {
       scheme: 'Tool',
       selectedItem: { tag: 'planning,organization' },
     };
@@ -23,7 +23,5 @@ test('format sent tags and check it', async (done) => {
   } catch (error) {
     console.error(error);
     expect(error).toBe(null);
-    done();
   }
-  done();
 });
