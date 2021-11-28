@@ -979,9 +979,9 @@
     to-fast-properties "^2.0.0"
 
 "@backapirest/next@latest":
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/@backapirest/next/-/next-1.3.4.tgz#942bf562f2381420dfa74b75a017b76ecacb95c9"
-  integrity sha512-dWL8/SRs1Q4vseRrgTRkPBwuApTzwBPowxSrHerxWGBmzcoN3fnYgqA6oqqIeXDK39Mag/MfVHdWZgk8MPggpg==
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/@backapirest/next/-/next-1.3.5.tgz#319d9d8b5e40247f1a5e3a38cdd526c15aa33779"
+  integrity sha512-ZL/h0VES9c+JfB2eEoS+STfNY2kt+sRdbzKl04IllcWGBfkt4y5zcTWeYO0Fm0MuRIXugQOgAUu7Abnh4JAacw==
   dependencies:
     backapi latest
     backapirest latest
