@@ -27,6 +27,7 @@
   "dependencies": {
     "@backapirest/next": "latest",
     "@flexiblepersistence/service": "latest",
+    "@midware/mauth": "latest",
     "axios": "latest",
     "bcrypt": "latest",
     "cors": "latest",
@@ -36,7 +37,15 @@
     "google-auth-library": "latest",
     "helmet": "latest",
     "jsonwebtoken": "latest",
-    "next": "latest"
+    "next": "latest",
+    "next-with-workbox": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "reflect-metadata": "latest",
+    "thread-promises": "latest",
+    "webpack": "latest",
+    "workbox-precaching": "latest",
+    "workbox-window": "latest"
   },
   "devDependencies": {
     "@babel/preset-env": "latest",

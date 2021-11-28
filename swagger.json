@@ -15,10 +15,7 @@
   "servers": [
     {
       "url": "https://vutt.vercel.app/api/v1",
-      "description": "API on vercel"
-    },
-    {
-      "url": "https://virtserver.swaggerhub.com/Judahh/VUTT/1.0.0"
+      "description": "VUTT API on vercel"
     }
   ],
   "tags": [
@@ -556,6 +553,12 @@
     },
     "/signUp": {
       "post": {
+        "servers": [
+          {
+            "url": "https://auth-sigma.vercel.app/api",
+            "description": "AUTH API on vercel"
+          }
+        ],
         "tags": [
           "user"
         ],
@@ -649,6 +652,12 @@
     },
     "/signIn": {
       "post": {
+        "servers": [
+          {
+            "url": "https://auth-sigma.vercel.app/api",
+            "description": "AUTH API on vercel"
+          }
+        ],
         "tags": [
           "user"
         ],

@@ -1,17 +1,20 @@
-import { BasicService } from '@backapirest/next';
+import { BaseService } from '@flexiblepersistence/service';
 import ToolServiceSimpleModel from '../model/tool/toolServiceSimpleModel';
 import {
-  PersistencePromise,
-  PersistenceInputCreate,
-  PersistenceInputRead,
-  PersistenceInputUpdate,
-  PersistenceInputDelete,
-  PersistenceInput,
+  IOutput,
+  IInputCreate,
+  IInputRead,
+  IInputUpdate,
+  IInputDelete,
+  IInput,
 } from 'flexiblepersistence';
 import ToolServiceModel from '../model/tool/toolServiceModel';
 
-export default class ToolService extends BasicService {
-  formatTags(input: PersistenceInput<ToolServiceSimpleModel>) {
+export default class ToolService extends BaseService<
+  ToolServiceSimpleModel,
+  ToolServiceModel
+> {
+  formatTags(input: IInput<ToolServiceSimpleModel>) {
     if (input.selectedItem) {
       if (input.selectedItem['tag'] && !input.selectedItem.tags) {
         input.selectedItem.tags = input.selectedItem['tag'];
@@ -24,7 +27,7 @@ export default class ToolService extends BasicService {
     }
   }
 
-  private formatContains(input: PersistenceInput<ToolServiceSimpleModel>) {
+  private formatContains(input: IInput<ToolServiceSimpleModel>) {
     if (input.selectedItem) {
       if (input.selectedItem['containsTitle'] && !input.selectedItem.title) {
         input.selectedItem.title = input.selectedItem['containsTitle'];
@@ -56,7 +59,7 @@ export default class ToolService extends BasicService {
     }
   }
 
-  private formatInput(input: PersistenceInput<ToolServiceSimpleModel>) {
+  private formatInput(input: IInput<ToolServiceSimpleModel>) {
     this.formatTags(input);
     this.formatContains(input);
   }
@@ -64,28 +67,28 @@ export default class ToolService extends BasicService {
     if (deleted.receivedItem) deleted.receivedItem = [];
   }
   async create(
-    input: PersistenceInputCreate<ToolServiceSimpleModel>
-  ): Promise<PersistencePromise<ToolServiceModel>> {
+    input: IInputCreate<ToolServiceSimpleModel>
+  ): Promise<IOutput<ToolServiceSimpleModel, ToolServiceModel>> {
     return super.create(input);
   }
   async read(
-    input: PersistenceInputRead
-  ): Promise<PersistencePromise<ToolServiceModel>> {
+    input: IInputRead
+  ): Promise<IOutput<ToolServiceSimpleModel, ToolServiceModel>> {
     this.formatInput(input);
     return super.read(input);
   }
   async update(
-    input: PersistenceInputUpdate<ToolServiceSimpleModel>
-  ): Promise<PersistencePromise<ToolServiceModel>> {
-    this.formatInput(input);
+    input: IInputUpdate<ToolServiceSimpleModel>
+  ): Promise<IOutput<ToolServiceSimpleModel, ToolServiceModel>> {
+    this.formatInput(input as IInput<ToolServiceSimpleModel>);
     input.options = {
       returnOriginal: false,
     };
     return super.update(input);
   }
   async delete(
-    input: PersistenceInputDelete
-  ): Promise<PersistencePromise<ToolServiceModel>> {
+    input: IInputDelete
+  ): Promise<IOutput<ToolServiceSimpleModel, ToolServiceModel>> {
     this.formatInput(input);
     const deleted = await super.delete(input);
     this.formatMongoReturnedItem(deleted);

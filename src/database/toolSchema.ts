@@ -26,13 +26,4 @@ export default class ToolSchema extends BaseSchemaDefault {
   };
 
   protected options = { strict: false, id: true, versionKey: false };
-  // protected indexOptions = [
-  //   { 'identifications.type': 1, 'identifications.identification': 1 },
-  //   { unique: true },
-  // ];
-
-  // protected indexOptions = [
-  //   { identifications: [{ type: 1, identification: 1 }] },
-  //   { unique: true },
-  // ];
 }
