@@ -1,7 +1,7 @@
 // file deepcode ignore no-any: any needed
 import dBHandler, { write, read } from '../../src/dBHandler';
 import ToolController from '../../src/controller/toolController';
-import { NextApiRequest as Request, NextApiResponse as Response } from 'next';
+import { Request, Response } from 'express';
 import { mockResponse } from './response.mock';
 import { Event, Operation } from 'flexiblepersistence';
 

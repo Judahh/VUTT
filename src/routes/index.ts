@@ -1,11 +1,11 @@
-import ToolController from '../controller/toolController';
-import { RouterSingleton } from '@backapirest/next';
+import { RouterSingleton } from '@backapirest/express';
 import { IRouter } from 'backapi';
 import Cors from 'cors';
 import Helmet from 'helmet';
 import Limit from 'express-rate-limit';
 import { Mauth } from '@midware/mauth';
 import { default as limitConfig } from '../config/limit.json';
+import ToolRouter from './toolRouter';
 
 // Initializing the cors middleware
 const cors = Cors({
@@ -29,6 +29,7 @@ export default class Index extends RouterSingleton {
   createRoutes(initDefault?: IRouter): void {
     if (initDefault) {
       const mauth = new Mauth();
+      const routes = this.getRoutes();
       if (
         !initDefault.middlewares ||
         this.getNames(initDefault.middlewares).includes(cors.name)
@@ -43,9 +44,7 @@ export default class Index extends RouterSingleton {
         mauth.permission.bind(mauth)
       );
 
-      if (!this.controller) this.controller = {};
-      if (!this.controller.tool)
-        this.controller.tool = new ToolController(initDefault);
+      ToolRouter(routes, initDefault);
     } else {
       throw new Error('Must init Init Default');
     }
