@@ -10,7 +10,7 @@
     "integration_coverall": "tests/integration/coverage/lcov.info",
     "path_dist": "dist",
     "path_source": "src",
-    "path_server": "src/server"
+    "path_server": "server"
   },
   "scripts": {
     "tsc": "tsc",
