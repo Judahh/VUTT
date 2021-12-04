@@ -69,7 +69,7 @@ It will run on port 3000
 
 ## Sample Client Code
 
-``` javascript
+```javascript
 import { io } from 'socket.io-client';
 
 const socket = io('ws://localhost:3000', {
