@@ -1,2 +1,2 @@
-import { BaseController } from '@backapirest/express';
+import { BaseController } from '@backapisocket/io';
 export default class ToolController extends BaseController {}

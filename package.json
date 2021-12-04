@@ -14,9 +14,7 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "prestart": "tsc",
     "start": "node $npm_package_config_path_dist/$npm_package_config_path_server",
-    "container-start": "node $npm_package_config_path_dist/$npm_package_config_path_server",
     "build": "tsc",
     "test": "jest $npm_package_config_jest",
     "integration": "jest $npm_package_config_integration_config $npm_package_config_jest",
@@ -24,7 +22,7 @@
     "integration:coveralls": "jest $npm_package_config_integration_config $npm_package_config_jest && coveralls < $npm_package_config_integration_coverall && rm -rf ./tests/integration/coverage/coverage"
   },
   "dependencies": {
-    "@backapirest/express": "latest",
+    "@backapisocket/io": "latest",
     "@flexiblepersistence/service": "latest",
     "@midware/mauth": "latest",
     "axios": "latest",

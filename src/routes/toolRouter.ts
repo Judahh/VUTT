@@ -1,17 +1,24 @@
 import { IDatabaseHandler } from 'backapi';
-import { Router } from 'express';
+import { Server, Socket } from 'socket.io';
 import ToolController from '../controller/toolController';
 
 export default function ToolRouter(
-  routes: Router,
+  _server: Server,
+  socket: Socket,
   initDefault: IDatabaseHandler
 ): void {
   const toolController = new ToolController(initDefault);
 
-  routes.get('/api/v1/tools/:id', toolController.index.bind(toolController));
-  routes.get('/api/v1/tools', toolController.show.bind(toolController));
-  routes.post('/api/v1/tools', toolController.store.bind(toolController));
-  routes.put('/api/v1/tools', toolController.update.bind(toolController));
-  routes.patch('/api/v1/tools', toolController.update.bind(toolController));
-  routes.delete('/api/v1/tools', toolController.delete.bind(toolController));
+  socket.on('tool.create', (data) => {
+    toolController.store.bind(toolController)(data, socket);
+  });
+  socket.on('tool.read', (data) => {
+    toolController.show.bind(toolController)(data, socket);
+  });
+  socket.on('tool.update', (data) => {
+    toolController.update.bind(toolController)(data, socket);
+  });
+  socket.on('tool.delete', (data) => {
+    toolController.delete.bind(toolController)(data, socket);
+  });
 }
