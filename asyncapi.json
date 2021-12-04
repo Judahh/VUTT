@@ -1,0 +1,197 @@
+{
+  "asyncapi": "2.2.0",
+  "info": {
+    "title": "Very Useful Tools to Remember",
+    "description": "Um simples repositório para gerenciar ferramentas com seus respectivos nomes, links, descrições e tags",
+    "contact": {
+      "email": "judahholanda7@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": {
+    "Heroku": {
+      "url": "https://vutt.heroku.app/api/v1",
+      "protocol": "ws",
+      "description": "VUTT API on vercel"
+    }
+  },
+  "tags": [
+    {
+      "name": "tools",
+      "description": "Everything about tools"
+    }
+  ],
+  "channels": {
+    "tool.create": {
+      "publish": {
+        "message": {
+          "payload":{
+          }
+        },
+        "summary": "Add a new tool",
+        "operationId": "addTool"
+      }
+    },
+    "tool.read":{
+      "publish": {
+        "summary": "Finds Tools by selection",
+        "description": "Multiple tags values can be provided with comma separated strings",
+        "operationId": "findTools"
+      }
+    },
+    "tool.update":{
+      "publish": {
+        "summary": "Update selected tools",
+        "description": "Multiple tags values can be provided with comma separated strings",
+        "operationId": "updateTools"
+      }
+    },
+    "tool.delete":{
+      "publish": {
+        "summary": "Deletes selected tools",
+        "description": "Multiple tags values can be provided with comma separated strings",
+        "operationId": "deleteTools"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Tag": {
+        "type": "string",
+        "example": "planning",
+        "xml": {
+          "name": "Tag"
+        }
+      },
+      "Instance": {
+        "type": "string"
+      },
+      "Permission": {
+        "type": "object"
+      },
+      "IdentificationSimple": {
+        "type": "object",
+        "properties": {
+          "identification": {
+            "type": "string",
+            "format": "oid"
+          },
+          "type": {
+            "type": "string",
+            "format": "enum",
+            "example": [
+              "GOOGLE",
+              "LOCAL"
+            ]
+          }
+        }
+      },
+      "Identification": {
+        "type": "object",
+        "properties": {
+          "identification": {
+            "type": "string",
+            "format": "oid"
+          },
+          "type": {
+            "type": "string",
+            "format": "enum",
+            "example": [
+              "GOOGLE",
+              "LOCAL"
+            ]
+          },
+          "key": {
+            "type": "string"
+          }
+        }
+      },
+      "Tool": {
+        "required": [
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "oid"
+          },
+          "title": {
+            "type": "string",
+            "example": "Notion"
+          },
+          "link": {
+            "type": "string",
+            "example": "https://notion.so"
+          },
+          "description": {
+            "type": "string",
+            "example": "All in one tool to organize teams and ideas. Write, plan, collaborate, and get organized."
+          },
+          "tags": {
+            "type": "array",
+            "xml": {
+              "name": "tag",
+              "wrapped": true
+            },
+            "items": {
+              "$ref": "#/components/schemas/Tag"
+            }
+          }
+        },
+        "xml": {
+          "name": "Tool"
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "oid"
+          },
+          "givenName": {
+            "type": "string"
+          },
+          "familyName": {
+            "type": "string"
+          },
+          "identifications": {
+            "type": "array",
+            "xml": {
+              "name": "identification",
+              "wrapped": true
+            },
+            "items": {
+              "$ref": "#/components/schemas/Identification"
+            }
+          }
+        }
+      },
+      "body": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Updated name of the tool"
+          },
+          "description": {
+            "type": "string",
+            "description": "Updated description of the tool"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "authorization": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    }
+  }
+}
