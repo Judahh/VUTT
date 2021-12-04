@@ -1,11 +1,16 @@
 # VUTT
+A sample repository for using BackAPI
 
-![Publish](https://github.com/Judahh/VUTT/workflows/Publish/badge.svg)
+## Environment Variables
 
-A simple repository for managing tools with their names, links, descriptions and
-tags
+| Name                         | Description      | Example                                                             |
+| ---------------------------- | ---------------- | ---------------------------------------------------------------------------- |
+| README_URL                   | README.MD URL    | https://raw.githubusercontent.com/Judahh/VUTT/main/README.md                 |
+| SWAGGER_URL                  | SWAGGER URL      | https://raw.githubusercontent.com/Judahh/VUTT/main/src/swagger.json          |
 
-## [SWAGGER](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/Judahh/VUTT/main/swagger.json)
+## Documentaion
+-Swagger
+-AsyncAPI
 
 ## Unity Tests
 
@@ -60,12 +65,6 @@ $ yarn dev
 ```
 
 It will run on port 3000
-
-## Environment
-
-- Staging:
-  [https://vutt-git-development.judahh.vercel.app](https://vutt-git-development.judahh.vercel.app)
-- Production: [https://vutt.vercel.app](https://vutt.vercel.app)
 
 ## People
 
