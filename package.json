@@ -43,7 +43,7 @@
     "swagger-ui-react": "latest",
     "webpack": "latest",
     "workbox-precaching": "latest",
-    "workbox-window": "latest"
+    "workbox-window": "6.4.2"
   },
   "devDependencies": {
     "@babel/preset-env": "latest",
