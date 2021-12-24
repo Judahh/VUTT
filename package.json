@@ -42,7 +42,7 @@
     "styled-components": "latest",
     "swagger-ui-react": "latest",
     "webpack": "latest",
-    "workbox-precaching": "latest",
+    "workbox-precaching": "6.4.2",
     "workbox-window": "latest"
   },
   "devDependencies": {
