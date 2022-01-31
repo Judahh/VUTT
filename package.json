@@ -26,14 +26,11 @@
     "integration:coveralls": "jest $npm_package_config_integration_config $npm_package_config_jest && coveralls < $npm_package_config_integration_coverall && rm -rf ./tests/integration/coverage/coverage"
   },
   "dependencies": {
-    "@asyncapi/react-component": "v1.0.0-next.24",
+    "@asyncapi/react-component": "latest",
     "axios": "latest",
     "coveralls": "latest",
-    "isarray": "latest",
     "next": "latest",
     "next-with-workbox": "latest",
-    "nprogress": "latest",
-    "polished": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-markdown": "latest",
@@ -41,9 +38,9 @@
     "remark-gfm": "latest",
     "styled-components": "latest",
     "swagger-ui-react": "latest",
-    "webpack": "latest",
     "workbox-precaching": "latest",
-    "workbox-window": "latest"
+    "workbox-window": "latest",
+    "katex": "latest"
   },
   "devDependencies": {
     "@babel/preset-env": "latest",
