@@ -1,25 +1,39 @@
 import { RouterSingleton } from '@backapisocket/io';
 import { IRouter } from 'backapi';
-import Cors from 'cors';
+import cors from 'cors';
 import Helmet from 'helmet';
 import Limit from 'express-rate-limit';
+import { limitConfig } from '../config/limitConfig';
 import { Mauth } from '@midware/mauth';
-import { default as limitConfig } from '../config/limit.json';
 import ToolRouter from './toolRouter';
 import { Server, Socket } from 'socket.io';
 
 // Initializing the cors middleware
-const cors = Cors({
-  methods: ['GET', 'HEAD'],
-});
+const limit = Limit(limitConfig);
 
-// Initializing the limit middleware
-const limit = Limit({
-  ...limitConfig,
-  keyGenerator: function (req) {
-    return req.headers['x-real-ip'];
-  },
-});
+const corsEnabled =
+  process.env.CORS_ENABLED?.toLocaleLowerCase() === 'true' ||
+  process.env.ALLOWED_ORIGIN === '*';
+
+const corsOptions = {
+  origin: process.env.ALLOWED_ORIGIN || '*',
+  methods: process.env.ALLOWED_METHODS || 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue:
+    process.env.ALLOWED_PREFLIGHT_CONTINUE?.toLocaleLowerCase() === 'true' ||
+    false,
+  optionsSuccessStatus: process.env.ALLOWED_OPTIONS_SUCCESS_STATUS
+    ? +process.env.ALLOWED_OPTIONS_SUCCESS_STATUS
+    : 204,
+  exposedHeaders: process.env.ALLOWED_EXPOSE_HEADERS
+    ? process.env.ALLOWED_EXPOSE_HEADERS
+    : 'Access-Control-Allow-Headers, Origin, Accept, ' +
+      'X-Requested-With, Content-Type, Access-Control-Request-Method, ' +
+      'Access-Control-Request-Headers,  Authorization, authorization, pages, ' +
+      'page, pageSize, numberOfPages, pagesize, numberofpages, pageNumber, ' +
+      'pagenumber, type, token, filter, single, sort, sortBy, sortByDesc, ' +
+      'sortByDescending, sortByAsc, sortByAscending, sortByDescending, ' +
+      'Access-Control-Allow-Origin',
+};
 
 export default class Index extends RouterSingleton {
   getNames(array) {
@@ -32,7 +46,7 @@ export default class Index extends RouterSingleton {
       const mauth = new Mauth();
       if (!initDefault.middlewares || initDefault.middlewares.length > 0)
         initDefault.middlewares = [];
-      initDefault.middlewares.push(cors);
+      if (corsEnabled) initDefault.middlewares.push(cors(corsOptions));
       initDefault.middlewares.push(Helmet());
       initDefault.middlewares.push(limit);
 
@@ -40,6 +54,8 @@ export default class Index extends RouterSingleton {
         mauth.authentication.bind(mauth),
         mauth.permission.bind(mauth)
       );
+
+      console.log('initDefault.middlewares', initDefault.middlewares);
 
       ToolRouter(server, socket, initDefault);
     } else {

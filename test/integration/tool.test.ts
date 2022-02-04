@@ -23,7 +23,7 @@ test('store a tool and check it', async () => {
         'calendar',
       ],
     };
-    const toolStored = await tool.store(
+    const toolStored = await tool.create(
       {
         body: storeTool,
       } as unknown as Request,

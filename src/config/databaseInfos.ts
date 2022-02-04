@@ -1,3 +1,6 @@
+import dotEnv from 'dotenv';
+dotEnv.config();
+
 const eventInfo = {
   uri: process.env.MONGO_URI,
   connectionType: process.env.MONGO_CONNECTION_TYPE,

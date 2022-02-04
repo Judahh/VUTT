@@ -9,11 +9,17 @@ export default function ToolRouter(
 ): void {
   const toolController = new ToolController(initDefault);
 
+  console.log('ToolRouter');
+
+  //toolController.connect({}, socket, server);
+
   socket.on('tool.create', (data) => {
-    toolController.store.bind(toolController)(data, socket);
+    console.log('tool.create');
+
+    toolController.create.bind(toolController)(data, socket);
   });
   socket.on('tool.read', (data) => {
-    toolController.show.bind(toolController)(data, socket);
+    toolController.read.bind(toolController)(data, socket);
   });
   socket.on('tool.update', (data) => {
     toolController.update.bind(toolController)(data, socket);

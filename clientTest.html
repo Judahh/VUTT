@@ -1,0 +1,33 @@
+<script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+<script>
+  console.log("Client Test");
+  const socket = io("http://localhost:3005", {
+    transports: ['websocket', 'polling', 'flashsocket'],
+    reconnectionDelayMax: 10000,
+    auth: {
+      token: "1234"
+    },
+    query: {
+      "my-key": "my-value",
+      token: "12345"
+    }
+  });
+  console.log("Socket");
+  socket.on("connect", () => {
+    console.log("Connect to server:", socket.io.engine.transport.name);
+    socket.emit("tool.create", { body: { title: 'YouTube',
+      link: 'https://www.youtube.com',
+      description: 'Videos to watch',
+      tags: ['videos', 'youtube', 'watch']
+    } });
+
+    socket.on("tool.create", (data) => {
+      console.log("tool.create", data);
+    });
+
+  });
+
+  socket.on("error", (error) => {
+    console.log("error", error);
+  });
+</script>
