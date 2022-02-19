@@ -29,7 +29,7 @@
     "@asyncapi/react-component": "latest",
     "axios": "latest",
     "coveralls": "latest",
-    "next": "latest",
+    "next": "12.1.0",
     "next-with-workbox": "latest",
     "react": "latest",
     "react-dom": "latest",
