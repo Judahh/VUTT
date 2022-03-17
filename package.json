@@ -39,7 +39,7 @@
     "styled-components": "latest",
     "swagger-ui-react": "latest",
     "workbox-precaching": "latest",
-    "workbox-window": "latest",
+    "workbox-window": "6.5.0",
     "katex": "latest"
   },
   "devDependencies": {
