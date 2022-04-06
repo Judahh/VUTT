@@ -26,7 +26,7 @@
     "integration:coveralls": "jest $npm_package_config_integration_config $npm_package_config_jest && coveralls < $npm_package_config_integration_coverall && rm -rf ./tests/integration/coverage/coverage"
   },
   "dependencies": {
-    "@asyncapi/react-component": "latest",
+    "@asyncapi/react-component": "0.24.20",
     "axios": "latest",
     "coveralls": "latest",
     "next": "latest",
