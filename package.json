@@ -37,7 +37,7 @@
     "rehype-katex": "latest",
     "remark-gfm": "latest",
     "styled-components": "latest",
-    "swagger-ui-react": "latest",
+    "swagger-ui-react": "4.16.1",
     "workbox-precaching": "latest",
     "workbox-window": "latest",
     "katex": "latest"
