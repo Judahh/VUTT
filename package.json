@@ -30,7 +30,7 @@
     "axios": "latest",
     "coveralls": "latest",
     "next": "latest",
-    "next-with-workbox": "latest",
+    "next-with-workbox": "3.0.0",
     "react": "latest",
     "react-dom": "latest",
     "react-markdown": "latest",
