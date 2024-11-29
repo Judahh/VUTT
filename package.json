@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@asyncapi/react-component": "latest",
-    "axios": "latest",
+    "axios": "1.7.8",
     "coveralls": "latest",
     "next": "latest",
     "next-with-workbox": "latest",
