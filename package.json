@@ -40,7 +40,7 @@
     "swagger-ui-react": "latest",
     "workbox-precaching": "latest",
     "workbox-window": "latest",
-    "katex": "latest"
+    "katex": "0.16.21"
   },
   "devDependencies": {
     "@babel/preset-env": "latest",
