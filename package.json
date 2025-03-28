@@ -27,9 +27,9 @@
   },
   "dependencies": {
     "@asyncapi/react-component": "latest",
-    "axios": "latest",
+    "axios": "0.30.0",
     "coveralls": "latest",
-    "next": "latest",
+    "next": "12.3.5",
     "next-with-workbox": "latest",
     "react": "latest",
     "react-dom": "latest",
@@ -37,7 +37,7 @@
     "rehype-katex": "latest",
     "remark-gfm": "latest",
     "styled-components": "latest",
-    "swagger-ui-react": "latest",
+    "swagger-ui-react": "5.20.2",
     "workbox-precaching": "latest",
     "workbox-window": "latest",
     "katex": "latest"
